@@ -8,7 +8,7 @@ a remote API using the jruby-openssl gem
 ```
 $ gem install bundler -v=1.11.2
 $ bundle install
-$ ruby main.rb
+$ jruby --profile main.rb
 ````
 
 # Reference

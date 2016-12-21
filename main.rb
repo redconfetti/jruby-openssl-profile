@@ -1,5 +1,6 @@
 require 'openssl'
 require 'httparty'
+require 'jruby/profiler'
 
 class Foo
   include HTTParty
@@ -31,10 +32,13 @@ class Foo
 
 end
 
-proxy = Foo.new
-response = proxy.perform('https://www.google.com/')
-puts "------------"
-puts "response code: #{response.code}\n"
-# puts "response body: #{response.body[0..100]}\n"
-puts "------------"
-puts "\n"
+profile_data = JRuby::Profiler.profile do
+  proxy = Foo.new
+  response = proxy.perform('https://www.google.com/')
+  puts "------------"
+  puts "response code: #{response.code}\n"
+  # puts "response body: #{response.body[0..100]}\n"
+  puts "------------"
+  puts "\n"
+end
+
